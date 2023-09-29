@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>고기잡이</title>
+	<style type="text/css">
+		@font-face {
+		    font-family: 'PPEditorialNew';
+		    src:url('./fonts/PPEditorialNew-Regular.otf') format('woff');}
+		body{margin: 5%;}
+		.fish{width: 150px; height: 150px; position: absolute;
+			background: url(https://media.giphy.com/media/Il7kChdOLX7q0/giphy.gif); 
+			background-size: 150px auto;
+			}
+		#counter{font-family: 'PPEditorialNew'; font-size: 6rem; line-height: 1.25em; margin-top: 1em}
+
+		.trash{position: absolute;
+			width: 150px;
+			}
+	</style>
+</head>
+<body>
+	<div id="counter">0</div>
+
+
+	<script type="text/javascript">
+
+		var count = 0;
+		counter.innerHTML = count + "/5 fishes";
+		makefish();
+		makeTrash();
+
+        const randomWords = ["고등어", "연어", "도미", "붉은돔", "송어", "청어", "넙치", "전갱이", "가다랑어", "삼치", "참치", "가재", "오징어", "문어", "가리비", "전어", "조개", "갑오징어", "농어", "꽁치", "갈치", "미꾸라지", "볼락", "숭어", "볼락", "도루묵", "거북이", "가오리", "해마", "명태", "전복", "멍게", "홍합", "문치", "방어", "청새치", "강태공", "강개복치", "황새치", "비릿돔", "돌돔", "우럭", "벵에돔", "샛돔", "가시고기", "전복", "날개새치", "옥돔"];
+
+        function displayRandomWord() {
+            const wordDisplay = document.getElementById('wordDisplay');
+            const randomIndex = Math.floor(Math.random() * randomWords.length);
+            const randomWord = randomWords[randomIndex];
+            alert("축하합니다! " + randomWord + "입니다!");
+      	  }
+
+		function makefish(){
+			var a = document.createElement("div");
+			a.className = "fish";
+			var b = Math.random() * window.innerWidth * 0.9 -20;
+			var c = Math.random() * window.innerHeight * 0.9 -20;
+			a.style.left = b + "px"
+			a.style.top = c + "px"
+
+			a.onclick = function(){
+				if(count < 4){
+					a.parentNode.removeChild(a);
+					makefish();
+					count += 1;
+	 				counter.innerHTML = count + "/5 fishes";
+	 				displayRandomWord();
+	 				}
+				if(count == 4){
+					a.parentNode.removeChild(a);
+					makefish();
+					count += 1;
+	 				counter.innerHTML = count + "/5 fishes<br>You caught many fish <br>and fully load a ship with fish. :)";
+	 				document.body.style.background = "skyblue";
+					displayRandomWord();
+
+	 				}
+	 			if(count > 4){
+					a.parentNode.removeChild(a);
+					makefish();
+					count += 1;
+	 				counter.innerHTML = count + "/5 fishes<br>stop fishing! <br>you are doing overfishing.";
+	 				document.body.style.background = "orangered";
+	 				displayRandomWord();
+	 				}
+	 			if(count > 9){
+					a.parentNode.removeChild(a);
+					makefish();
+					count += 1;
+	 				counter.innerHTML = count + "/5 fishes<br>Okay, Do as you will :(";
+	 				displayRandomWord();
+	 				}
+ 				}
+
+			document.body.appendChild(a);
+			}
+		
+
+
+		
+		makeTrash();
+		function makeTrash(){
+			const trashImages = ["./img/trashimg1.png","./img/trashimg2.png","./img/trashimg3.png","./img/trashimg4.png"]
+			const chosenTrash = trashImages[Math.floor(Math.random() * trashImages.length)]
+			var h = document.createElement("img");
+				h.src = '$chosenTrash';
+				h.className = "trash";
+			var x = Math.random() * window.innerWidth*0.9;
+			var y = Math.random() * window.innerHeight * 0.9;
+			h.style.left = x + "px"
+			h.style.top = y + "px"
+
+			h.onclick = function(){
+				h.parentNode.removeChild(h);
+					makeTrash();
+			document.body.appendChild(h);
+		}
+			}
+
+
+		// console.log(window.innerWidth, window.innerHeight);
+	</script>
+</body>
+</html>
